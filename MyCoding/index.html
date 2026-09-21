@@ -3,440 +3,234 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aditya Shrivas | Elite Web Developer & Bio Portfolio</title>
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-        }
-
-        :root {
-            --bg-color: #05070b;
-            --card-bg: #0f1420;
-            --card-border: #1e293b;
-            --accent-glow: rgba(56, 189, 248, 0.15);
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --primary: #38bdf8;
-            --primary-gradient: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            overflow-x: hidden;
-            padding: 30px 16px;
-            display: flex;
-            justify-content: center;
-            position: relative;
-        }
-
-        body::before {
-            content: '';
-            position: absolute;
-            top: -100px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(56, 189, 248, 0.12) 0%, rgba(0,0,0,0) 70%);
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        .portfolio-container {
-            width: 100%;
-            max-width: 580px;
-        }
-
-        .reveal-on-scroll {
-            opacity: 0;
-            transform: translateY(35px);
-            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
-                        transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-            will-change: opacity, transform;
-        }
-
-        .reveal-on-scroll.revealed {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .status-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 24px;
-        }
-
-        .live-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(34, 197, 94, 0.1);
-            color: #4ade80;
-            padding: 6px 14px;
-            border-radius: 30px;
-            font-size: 12px;
-            font-weight: 600;
-            border: 1px solid rgba(34, 197, 94, 0.25);
-        }
-
-        .pulse-dot {
-            width: 8px;
-            height: 8px;
-            background-color: #4ade80;
-            border-radius: 50%;
-            box-shadow: 0 0 0 rgba(74, 222, 128, 0.4);
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.6); }
-            70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(74, 222, 128, 0); }
-            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(74, 222, 128, 0); }
-        }
-
-        .portfolio-badge {
-            background: rgba(56, 189, 248, 0.1);
-            color: var(--primary);
-            padding: 6px 14px;
-            border-radius: 30px;
-            font-size: 12px;
-            font-weight: 600;
-            border: 1px solid rgba(56, 189, 248, 0.25);
-        }
-
-        .hero-section {
-            text-align: center;
-            margin-bottom: 35px;
-        }
-
-        .hero-section h1 {
-            font-size: 30px;
-            font-weight: 800;
-            margin-bottom: 8px;
-            letter-spacing: -0.5px;
-        }
-
-        .highlight-name {
-            background: var(--primary-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .subtitle {
-            font-size: 15px;
-            color: var(--text-muted);
-            margin-bottom: 12px;
-            font-weight: 500;
-        }
-
-        .location-tag {
-            font-size: 13px;
-            color: var(--text-muted);
-            background: var(--card-bg);
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 6px 16px;
-            border-radius: 20px;
-            border: 1px solid var(--card-border);
-        }
-
-        h2 {
-            font-size: 18px;
-            font-weight: 700;
-            margin: 32px 0 16px 0;
-            color: #f1f5f9;
-        }
-
-        .custom-card {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            padding: 22px;
-            border-radius: 18px;
-            margin-bottom: 16px;
-            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .custom-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 4px;
-            height: 100%;
-            background: var(--primary);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .custom-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(56, 189, 248, 0.4);
-            box-shadow: 0 15px 35px -10px var(--accent-glow);
-        }
-
-        .custom-card:hover::before {
-            opacity: 1;
-        }
-
-        .custom-card p {
-            font-size: 14px;
-            color: var(--text-muted);
-            line-height: 1.6;
-        }
-
-        .custom-card strong {
-            color: var(--text-main);
-        }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-        }
-
-        .skill-item {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            padding: 14px 16px;
-            border-radius: 14px;
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--text-main);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            transition: all 0.3s ease;
-        }
-
-        .skill-item:hover {
-            transform: translateY(-3px);
-            border-color: rgba(56, 189, 248, 0.4);
-            background: #131b2e;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-        }
-
-        .project-card h3 {
-            font-size: 17px;
-            font-weight: 700;
-            margin-bottom: 8px;
-            color: #ffffff;
-        }
-
-        .project-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            margin-top: 14px;
-            font-size: 13px;
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: 700;
-            transition: gap 0.2s ease, color 0.2s ease;
-        }
-
-        .project-link:hover {
-            gap: 10px;
-            color: #7dd3fc;
-        }
-
-        .action-buttons {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin-top: 20px;
-        }
-
-        .cta-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            text-align: center;
-            padding: 16px;
-            border-radius: 14px;
-            font-weight: 700;
-            font-size: 14px;
-            text-decoration: none;
-            color: #ffffff;
-            transition: transform 0.2s ease, opacity 0.2s ease, box-shadow 0.2s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            cursor: pointer;
-            border: none;
-        }
-
-        .whatsapp-btn {
-            background: linear-gradient(135deg, #22c55e, #15803d);
-        }
-
-        .instagram-btn {
-            background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
-        }
-
-        .cta-btn:active {
-            transform: scale(0.98);
-        }
-
-        .cta-btn:hover {
-            opacity: 0.95;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
-        }
-
-        @keyframes waveAnim {
-            0% { transform: rotate(0deg); }
-            50% { transform: rotate(14deg); }
-            100% { transform: rotate(0deg); }
-        }
-
-        .wave-emoji {
-            display: inline-block;
-            animation: waveAnim 1.8s infinite;
-            transform-origin: 70% 70%;
-        }
-
-        @media(max-width: 480px) {
-            .skills-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    <title>DreamHome Estates | Luxury Living & Investments</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <main class="portfolio-container">
-        
-        <div class="status-header reveal-on-scroll">
-            <div class="live-badge">
-                <div class="pulse-dot"></div>
-                Available for Work
-            </div>
-            <div class="portfolio-badge">
-                ✨ BIO PORTFOLIO
+    <div class="top-bar">
+        🔥 LIMITED TIME FESTIVE MEGA SALE: SAVE UP TO 15% ON LUXURY VILLAS & FLATS! <a href="#contact" style="color: #000; text-decoration: underline; margin-left: 10px;">Claim Offer</a>
+    </div>
+
+    <header>
+        <div class="logo">
+            <i class="fa-solid fa-house-chimney-window logo-icon"></i>
+            <div class="logo-text">
+                Dream<span>Home</span>
+                <small>Estates & Luxury</small>
             </div>
         </div>
+        <div class="menu-toggle" id="mobile-menu">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+        <nav>
+            <ul class="nav-list">
+                <li><a href="#properties">Properties</a></li>
+                <li><a href="#properties" class="sale-link"><i class="fa-solid fa-fire"></i> Mega Sale</a></li>
+                <li><a href="#amenities">Amenities</a></li>
+                <li><a href="#calculator">EMI Calculator</a></li>
+                <li><a href="#reviews">Client Reviews</a></li>
+                <li><a href="#contact">Contact Us</a></li>
+                <li><a href="#contact" class="nav-btn">Book Visit</a></li>
+            </ul>
+        </nav>
+    </header>
 
-        <section class="hero-section reveal-on-scroll">
-            <h1>Hi, I'm <span class="highlight-name">Aditya Shrivas</span> <span class="wave-emoji">👋</span></h1>
-            <p class="subtitle">
-                🚀 Web Developer & 🤖 Tech Creator
-            </p>
-            <div class="location-tag">
-                📍 Bhind, Madhya Pradesh, India
+    <section class="hero">
+        <div class="hero-content">
+            <div class="badge"><i class="fa-solid fa-crown"></i> Welcome to Elite Living • Mega Sale Live</div>
+            <h1>Discover Your Dream Sanctuary With <span>Exclusive Savings</span></h1>
+            <p>Experience ultra-luxury living with special festive discounts, zero brokerage options, and elite properties handpicked for your future.</p>
+            <div class="hero-buttons">
+                <a href="#properties" class="btn-primary">View Sale Properties</a>
+                <a href="#contact" class="btn-secondary">Claim Special Offer</a>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section class="about-section">
-            <h2 class="reveal-on-scroll">💻 About Me</h2>
-            
-            <div class="custom-card reveal-on-scroll">
-                <p>
-                    Hello everyone! My name is <strong>Aditya Shrivas</strong>. I am currently pursuing my higher education with a <strong>B.Sc. in Biology</strong>, while actively exploring my deep passion for technology, coding, and digital creation.
-                </p>
-                <p style="margin-top: 12px;">
-                    Along with my science studies, I have successfully completed my <strong>CCA</strong> and am currently pursuing my <strong>DCA</strong> to build solid fundamentals in computer applications.
-                </p>
+    <!-- Properties Section -->
+    <section id="properties">
+        <h2 class="section-title">Featured Properties & Mega Sale</h2>
+        <div class="properties-grid">
+            <div class="property-card">
+                <div class="discount-badge">SAVE 15% SALE</div>
+                <div class="property-img-container"><img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80" class="property-img" alt="Property"></div>
+                <div class="property-info">
+                    <div class="price">$450,000</div>
+                    <div class="prop-title">Modern Luxury Villa</div>
+                    <div class="location"><i class="fa-solid fa-location-dot"></i> Beverly Hills, California</div>
+                    <div class="details"><i class="fa-solid fa-bed"></i> 4 Beds | <i class="fa-solid fa-bath"></i> 3 Baths | 2,800 sqft</div>
+                    <a href="#contact" class="card-btn">Claim Sale Deal</a>
+                </div>
             </div>
-
-            <div class="custom-card reveal-on-scroll" style="border-left: 4px solid #f59e0b;">
-                <p>
-                    🎯 <strong>Current Status:</strong> Main abhi coding seekh raha hoon aur daily practice karke apni web development skills ko advance kar raha hoon!
-                </p>
+            <div class="property-card">
+                <div class="discount-badge">SPECIAL DISCOUNT</div>
+                <div class="property-img-container"><img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=600&q=80" class="property-img" alt="Property"></div>
+                <div class="property-info">
+                    <div class="price">$280,000</div>
+                    <div class="prop-title">Skyline Glass Penthouse</div>
+                    <div class="location"><i class="fa-solid fa-location-dot"></i> Downtown Manhattan</div>
+                    <div class="details"><i class="fa-solid fa-bed"></i> 3 Beds | <i class="fa-solid fa-bath"></i> 2 Baths | 1,950 sqft</div>
+                    <a href="#contact" class="card-btn">Claim Sale Deal</a>
+                </div>
             </div>
-        </section>
-
-        <section class="skills-section">
-            <h2 class="reveal-on-scroll">🛠️ Technical Skills & Expertise</h2>
-
-            <div class="skills-grid">
-                <div class="skill-item reveal-on-scroll">💻 HTML5 & CSS3 Architecture</div>
-                <div class="skill-item reveal-on-scroll">⚡ JavaScript Fundamentals</div>
-                <div class="skill-item reveal-on-scroll">🐍 Python Basics & Programming</div>
-                <div class="skill-item reveal-on-scroll">🎓 CCA & DCA (Computer Applications)</div>
-                <div class="skill-item reveal-on-scroll">🤖 AI-Assisted Development & Prompting</div>
-                <div class="skill-item reveal-on-scroll">📱 Responsive UI/UX Layouts</div>
+            <div class="property-card">
+                <div class="discount-badge">HOT SALE OFFER</div>
+                <div class="property-img-container"><img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=600&q=80" class="property-img" alt="Property"></div>
+                <div class="property-info">
+                    <div class="price">$350,000</div>
+                    <div class="prop-title">Greenwood Suburban House</div>
+                    <div class="location"><i class="fa-solid fa-location-dot"></i> Austin, Texas</div>
+                    <div class="details"><i class="fa-solid fa-bed"></i> 5 Beds | <i class="fa-solid fa-bath"></i> 4 Baths | 3,400 sqft</div>
+                    <a href="#contact" class="card-btn">Claim Sale Deal</a>
+                </div>
             </div>
-        </section>
-
-        <section class="projects-section">
-            <h2 class="reveal-on-scroll">💼 Featured Projects</h2>
-
-            <!-- Project 1: IroncladAthletics -->
-            <div class="custom-card project-card reveal-on-scroll">
-                <h3>💪 IroncladAthletics</h3>
-                <p>A professional fitness platform featuring BMI & calorie calculators, membership packages, and modern dark-mode athletic styling.</p>
-                <a href="https://ironclad-gym-bhopal.netlify.app" target="_blank" class="project-link">Visit Live Website &rarr;</a>
+            <div class="property-card">
+                <div class="discount-badge">FEATURED</div>
+                <div class="property-img-container"><img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=600&q=80" class="property-img" alt="Property"></div>
+                <div class="property-info">
+                    <div class="price">$520,000</div>
+                    <div class="prop-title">Royal Palm Estate</div>
+                    <div class="location"><i class="fa-solid fa-location-dot"></i> Miami, Florida</div>
+                    <div class="details"><i class="fa-solid fa-bed"></i> 6 Beds | <i class="fa-solid fa-bath"></i> 6 Baths | 4,200 sqft</div>
+                    <a href="#contact" class="card-btn">Claim Sale Deal</a>
+                </div>
             </div>
-
-            <!-- Project 2: The Royal Bean Cafe -->
-            <div class="custom-card project-card reveal-on-scroll">
-                <h3>☕ The Royal Bean Cafe</h3>
-                <p>A premium, responsive dark and gold-themed cafe & lounge website featuring rich UI, interactive menus, and WhatsApp booking integration.</p>
-                <a href="https://royal-bean-cafe.vercel.app" target="_blank" class="project-link">Visit Live Website &rarr;</a>
+            <div class="property-card">
+                <div class="discount-badge">MEGA DEAL</div>
+                <div class="property-img-container"><img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=600&q=80" class="property-img" alt="Property"></div>
+                <div class="property-info">
+                    <div class="price">$310,000</div>
+                    <div class="prop-title">Classic Brick Mansion</div>
+                    <div class="location"><i class="fa-solid fa-location-dot"></i> Chicago, Illinois</div>
+                    <div class="details"><i class="fa-solid fa-bed"></i> 4 Beds | <i class="fa-solid fa-bath"></i> 3 Baths | 3,100 sqft</div>
+                    <a href="#contact" class="card-btn">Claim Sale Deal</a>
+                </div>
             </div>
-
-            <!-- Project 3: Luxury Home Estates (Updated Link) -->
-            <div class="custom-card project-card reveal-on-scroll">
-                <h3>🏡 Luxury Home Estates</h3>
-                <p>A high-end real estate web platform showcasing luxury properties, modern layouts, and immersive property exploration.</p>
-                <a href="https://luxuryhome-estates.vercel.app" target="_blank" class="project-link">Visit Live Website &rarr;</a>
+            <div class="property-card">
+                <div class="discount-badge">SAVE 10%</div>
+                <div class="property-img-container"><img src="https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=600&q=80" class="property-img" alt="Property"></div>
+                <div class="property-info">
+                    <div class="price">$420,000</div>
+                    <div class="prop-title">Ocean Breeze Villa</div>
+                    <div class="location"><i class="fa-solid fa-location-dot"></i> Malibu, California</div>
+                    <div class="details"><i class="fa-solid fa-bed"></i> 3 Beds | <i class="fa-solid fa-bath"></i> 3 Baths | 2,500 sqft</div>
+                    <a href="#contact" class="card-btn">Claim Sale Deal</a>
+                </div>
             </div>
-        </section>
-
-        <section class="connect-section">
-            <h2 class="reveal-on-scroll">🤝 Let's Connect</h2>
-
-            <div class="custom-card reveal-on-scroll">
-                <p>💡 Aisi hi stunning aur professional website banvane ke liye mujhse contact karein - budget-friendly price mein behtareen design ke sath!</p>
+            <div class="property-card">
+                <div class="discount-badge">BEST VALUE</div>
+                <div class="property-img-container"><img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=600&q=80" class="property-img" alt="Property"></div>
+                <div class="property-info">
+                    <div class="price">$245,000</div>
+                    <div class="prop-title">Serene Garden Cottage</div>
+                    <div class="location"><i class="fa-solid fa-location-dot"></i> Seattle, Washington</div>
+                    <div class="details"><i class="fa-solid fa-bed"></i> 2 Beds | <i class="fa-solid fa-bath"></i> 2 Baths | 1,600 sqft</div>
+                    <a href="#contact" class="card-btn">Claim Sale Deal</a>
+                </div>
             </div>
-
-            <div class="action-buttons reveal-on-scroll">
-                <!-- WhatsApp Link Activated -->
-                <a href="https://wa.me/919243266485" target="_blank" class="cta-btn whatsapp-btn">
-                    💬 Chat on WhatsApp
-                </a>
-                <!-- Instagram Profile Link Activated -->
-                <a href="https://instagram.com/mr_aadi_singh_.002" target="_blank" class="cta-btn instagram-btn">
-                    📸 Instagram Profile
-                </a>
+            <div class="property-card">
+                <div class="discount-badge">LIMITED OFFER</div>
+                <div class="property-img-container"><img src="https://images.unsplash.com/photo-1576941089067-2de3c901e126?auto=format&fit=crop&w=600&q=80" class="property-img" alt="Property"></div>
+                <div class="property-info">
+                    <div class="price">$490,000</div>
+                    <div class="prop-title">The Grand Horizon Home</div>
+                    <div class="location"><i class="fa-solid fa-location-dot"></i> Aspen, Colorado</div>
+                    <div class="details"><i class="fa-solid fa-bed"></i> 5 Beds | <i class="fa-solid fa-bath"></i> 5 Baths | 3,800 sqft</div>
+                    <a href="#contact" class="card-btn">Claim Sale Deal</a>
+                </div>
             </div>
-        </section>
+            <div class="property-card">
+                <div class="discount-badge">EXCLUSIVE</div>
+                <div class="property-img-container"><img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=600&q=80" class="property-img" alt="Property"></div>
+                <div class="property-info">
+                    <div class="price">$380,000</div>
+                    <div class="prop-title">Urban Luxe Apartment</div>
+                    <div class="location"><i class="fa-solid fa-location-dot"></i> Boston, Massachusetts</div>
+                    <div class="details"><i class="fa-solid fa-bed"></i> 3 Beds | <i class="fa-solid fa-bath"></i> 2 Baths | 2,100 sqft</div>
+                    <a href="#contact" class="card-btn">Claim Sale Deal</a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    </main>
+    <!-- Amenities Section -->
+    <section id="amenities">
+        <h2 class="section-title">World-Class Amenities</h2>
+        <div class="amenities-grid">
+            <div class="amenity-card"><i class="fa-solid fa-tree"></i><h3>Lush Green Park</h3><p>Beautiful landscaped botanical gardens and walking tracks.</p></div>
+            <div class="amenity-card"><i class="fa-solid fa-swimming-pool"></i><h3>Infinity Pool</h3><p>Private pools overlooking stunning horizons.</p></div>
+            <div class="amenity-card"><i class="fa-solid fa-shield-halved"></i><h3>24/7 Security</h3><p>Advanced biometric and surveillance system.</p></div>
+            <div class="amenity-card"><i class="fa-solid fa-dumbbell"></i><h3>Private Gym</h3><p>Fully equipped fitness centers.</p></div>
+        </div>
+    </section>
 
-    <script>
-        // Scroll reveal animation observer
-        document.addEventListener("DOMContentLoaded", function () {
-            const revealElements = document.querySelectorAll('.reveal-on-scroll');
+    <!-- EMI Calculator Section -->
+    <section id="calculator">
+        <h2 class="section-title">EMI Calculator</h2>
+        <div class="calculator-box">
+            <div class="calc-group"><label>Loan Amount ($)</label><input type="number" id="loanAmount" value="300000" oninput="calculateEMI()"></div>
+            <div class="calc-group"><label>Interest Rate (% P.A.)</label><input type="number" id="interestRate" value="8.5" step="0.1" oninput="calculateEMI()"></div>
+            <div class="calc-group"><label>Tenure (Years)</label><input type="number" id="tenureYears" value="20" oninput="calculateEMI()"></div>
+            <div class="calc-result" id="emiResult">Monthly EMI: $2,603 / month</div>
+        </div>
+    </section>
 
-            const scrollObserver = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('revealed');
-                    }
-                });
-            }, {
-                threshold: 0.12
-            });
+    <!-- Client Reviews Section -->
+    <section id="reviews">
+        <h2 class="section-title">Client Reviews</h2>
+        <div class="reviews-grid">
+            <div class="review-card">
+                <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                <p>"DreamHome Estates helped us find our dream villa in Beverly Hills effortlessly during the sale."</p>
+                <div class="review-author">- Rajesh Sharma</div>
+            </div>
+            <div class="review-card">
+                <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                <p>"The Manhattan glass penthouse view is breathtaking. Transparent dealing and amazing discounts."</p>
+                <div class="review-author">- Priya Verma</div>
+            </div>
+            <div class="review-card">
+                <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                <p>"Smooth paperwork and great support from the team. Loving my new home in Miami!"</p>
+                <div class="review-author">- Amit Patel</div>
+            </div>
+            <div class="review-card">
+                <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                <p>"The EMI calculator and festival discounts made this purchase so easy and budget-friendly."</p>
+                <div class="review-author">- Sneha Reddy</div>
+            </div>
+        </div>
+    </section>
 
-            revealElements.forEach(element => {
-                scrollObserver.observe(element);
-            });
-        });
-    </script>
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="contact-container">
+            <div class="contact-info">
+                <h2>Get In Touch With Our Experts</h2>
+                <p>Ready to claim your luxury home with festive savings? Contact our real estate consultants today.</p>
+                <ul>
+                    <li><i class="fa-solid fa-phone"></i> +1 (555) 234-5678</li>
+                    <li><i class="fa-solid fa-envelope"></i> contact@dreamhomeestates.com</li>
+                    <li><i class="fa-solid fa-location-dot"></i> 742 Evergreen Terrace, Luxury Avenue, CA</li>
+                </ul>
+            </div>
+            <div class="contact-box">
+                <div class="form-group"><input type="text" placeholder="Your Name"></div>
+                <div class="form-group"><input type="email" placeholder="Your Email"></div>
+                <div class="form-group"><input type="text" placeholder="Phone Number"></div>
+                <div class="form-group"><textarea placeholder="Message or Property Inquiry"></textarea></div>
+                <button class="submit-btn">Send Message</button>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 DreamHome Estates. All Rights Reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
